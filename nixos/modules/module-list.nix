@@ -168,6 +168,7 @@
   ./programs/command-not-found/command-not-found.nix
   ./programs/coolercontrol.nix
   ./programs/criu.nix
+  ./programs/cuttlefish-base.nix
   ./programs/darling.nix
   ./programs/dconf.nix
   ./programs/digitalbitbox/default.nix
