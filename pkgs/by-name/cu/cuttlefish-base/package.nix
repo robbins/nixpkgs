@@ -1,4 +1,4 @@
-{ stdenv, python3, fetchFromGitHub, ebtables, dnsmasq }:
+{ stdenv, python3, fetchFromGitHub, ebtables, dnsmasq, kmod }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "cuttlefish-base";
@@ -28,6 +28,7 @@ stdenv.mkDerivation (finalAttrs: {
     substituteInPlace $out/etc/init.d/cuttlefish-base.cuttlefish-host-resources.init --replace '$ebtables' '${ebtables}/bin/ebtables'
     substituteInPlace $out/etc/init.d/cuttlefish-base.cuttlefish-host-resources.init --replace 'start_dnsmasq' 'start_dnsmasq_fn'
     substituteInPlace $out/etc/init.d/cuttlefish-base.cuttlefish-host-resources.init --replace 'dnsmasq \' '${dnsmasq}/bin/dnsmasq \'
+    substituteInPlace $out/etc/init.d/cuttlefish-base.cuttlefish-host-resources.init --replace 'modprobe' '${kmod}/bin/modprobe'
 
     runHook postInstall
   '';
