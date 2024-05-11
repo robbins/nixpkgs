@@ -104,8 +104,8 @@ in {
         GuessMainPID = "no";
         RemainAfterExit = "yes";
         SuccessExitStatus = "5 6";
-        ExecStart = "${cfg.package}/etc/init.d/cuttlefish-host-resources start";
-        ExecStop = "${cfg.package}/etc/init.d/cuttlefish-host-resources stop";
+        ExecStart = "${cfg.package}/etc/init.d/cuttlefish-base.cuttlefish-host-resources.init start";
+        ExecStop = "${cfg.package}/etc/init.d/cuttlefish-base.cuttlefish-host-resources.init stop";
       };
     };
 
