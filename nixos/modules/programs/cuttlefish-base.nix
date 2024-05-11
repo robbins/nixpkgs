@@ -88,20 +88,26 @@ in {
       cfg.package
     ];
 
-    /*systemd.services.cuttlefish-host-resources = {
-      description = "Cuttlefish host resources";
+    systemd.services.cuttlefish-host-resources = {
+      description = "Set up initial cuttlefish environment";
 
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network.target" ]; # if networking is needed
-
-      restartIfChanged = false; # set to false, if restarting is problematic
+      before = [ "multi-user.target" "graphical.target" ];
+      after = [ "network-online.target" "remote-fs.target" ];
+      wants = [ "network-online.target" ];
 
       serviceConfig = {
-        DynamicUser = true;
-        ExecStart = "${cfg.package}/bin/openrgb";
-        Restart = "always";
+        Type = "forking";
+        Restart = "no";
+        TimeoutSec = "5min";
+        IgnoreSIGPIPE= "no";
+        KillMode = "process";
+        GuessMainPID = "no";
+        RemainAfterExit = "yes";
+        SuccessExitStatus = "5 6";
+        ExecStart = "${cfg.package}/etc/init.d/cuttlefish-host-resources start";
+        ExecStop = "${cfg.package}/etc/init.d/cuttlefish-host-resources stop";
       };
-    };*/
+    };
 
   };
 
