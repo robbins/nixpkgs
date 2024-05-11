@@ -26,6 +26,7 @@ stdenv.mkDerivation (finalAttrs: {
     cp -av $src/base/debian/cuttlefish-base.cuttlefish-host-resources.init $out/etc/init.d/
 
     substituteInPlace $out/etc/init.d/cuttlefish-base.cuttlefish-host-resources.init --replace '$ebtables' '${ebtables}/bin/ebtables'
+    substituteInPlace $out/etc/init.d/cuttlefish-base.cuttlefish-host-resources.init --replace 'start_dnsmasq' 'start_dnsmasq_fn'
     substituteInPlace $out/etc/init.d/cuttlefish-base.cuttlefish-host-resources.init --replace 'dnsmasq \' '${dnsmasq}/bin/dnsmasq \'
 
     runHook postInstall
