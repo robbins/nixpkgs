@@ -25,10 +25,13 @@ stdenv.mkDerivation (finalAttrs: {
 
     cp -av $src/base/debian/cuttlefish-base.cuttlefish-host-resources.init $out/etc/init.d/
 
+    substituteInPlace $out/etc/init.d/cuttlefish-base.cuttlefish-host-resources.init --replace 'ip ' '${iproute2}/bin/ip '
+    substituteInPlace $out/etc/init.d/cuttlefish-base.cuttlefish-host-resources.init --replace '/usr/bin/nvidia-modprobe --modeset || /bin/true' ' '
     substituteInPlace $out/etc/init.d/cuttlefish-base.cuttlefish-host-resources.init --replace '$ebtables' '${ebtables}/bin/ebtables'
     substituteInPlace $out/etc/init.d/cuttlefish-base.cuttlefish-host-resources.init --replace 'start_dnsmasq' 'start_dnsmasq_fn'
     substituteInPlace $out/etc/init.d/cuttlefish-base.cuttlefish-host-resources.init --replace 'dnsmasq \' '${dnsmasq}/bin/dnsmasq \'
     substituteInPlace $out/etc/init.d/cuttlefish-base.cuttlefish-host-resources.init --replace 'modprobe' '${kmod}/bin/modprobe'
+    substituteInPlace $out/etc/init.d/cuttlefish-base.cuttlefish-host-resources.init --replace '. /lib/lsb/init-functions' ' '
 
     runHook postInstall
   '';
