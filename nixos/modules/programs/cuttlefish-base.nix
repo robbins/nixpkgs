@@ -96,8 +96,6 @@ in {
       wants = [ "network-online.target" ];
 
       serviceConfig = {
-        User = "group";
-        Group = "netdev";
         Type = "forking";
         Restart = "no";
         TimeoutSec = "5min";
