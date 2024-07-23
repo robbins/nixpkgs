@@ -1,4 +1,4 @@
-{ stdenv, python3, fetchFromGitHub, ebtables, dnsmasq, kmod }:
+{ stdenv, python3, fetchFromGitHub, ebtables, dnsmasq, kmod, iproute2 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "cuttlefish-base";
