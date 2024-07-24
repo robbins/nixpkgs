@@ -58,6 +58,7 @@
 , systemd
 , unzip
 , usbutils
+, wayland
 , which
 , runCommand
 , xkeyboard_config
@@ -176,6 +177,9 @@ let
           # For GTKLookAndFeel
           gtk2
           glib
+
+          # Wayland
+          (lib.getLib wayland)
         ]}"
 
       # AS launches LLDBFrontend with a custom LD_LIBRARY_PATH
