@@ -58,6 +58,7 @@
 , systemd
 , unzip
 , usbutils
+, wayland
 , which
 , runCommand
 , xkeyboard_config
@@ -177,6 +178,9 @@ let
           gnome_vfs
           glib
           GConf
+
+          # Wayland
+          (lib.getLib wayland)
         ]}"
 
       # AS launches LLDBFrontend with a custom LD_LIBRARY_PATH
