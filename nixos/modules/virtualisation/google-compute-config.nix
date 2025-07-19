@@ -21,7 +21,7 @@ in
     ../profiles/qemu-guest.nix
   ];
 
-  fileSystems."/" = {
+  fileSystems."/" = lib.mkDefault {
     fsType = "ext4";
     device = "/dev/disk/by-label/nixos";
     autoResize = true;
@@ -40,7 +40,7 @@ in
   ];
 
   # Generate a GRUB menu.
-  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.device = lib.mkDefault "/dev/sda";
   boot.loader.timeout = 0;
 
   # Don't put old configurations in the GRUB menu.  The user has no
